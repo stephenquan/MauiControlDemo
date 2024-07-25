@@ -32,6 +32,17 @@
                 Style="{StaticResource MauiControlButton}"
                 Text="Click me" />
 
+            <Slider
+                x:Name="slider"
+                Maximum="100"
+                Minimum="0"
+                Value="50" />
+
+            <local:MauiControl
+                x:Name="entry"
+                Style="{StaticResource MauiControlEntry}"
+                TextValue="{Binding Value, Source={Reference slider}, Mode=TwoWay}" />
+
         </VerticalStackLayout>
     </ScrollView>
 
