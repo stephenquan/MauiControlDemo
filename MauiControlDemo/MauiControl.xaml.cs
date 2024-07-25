@@ -46,6 +46,13 @@ public partial class MauiControl : CustomContentView, IValueConverter
         set => SetValue(TextColorProperty, value);
     }
 
+    public static BindableProperty TextValueProperty = BindableProperty.Create(nameof(TextValue), typeof(double), typeof(MauiControl), 0.0);
+    public double TextValue
+    {
+        get => (double)GetValue(TextValueProperty);
+        set => SetValue(TextValueProperty, value);
+    }
+
     public event EventHandler Clicked;
 
     public Command InternalClickedCommand { get; }
@@ -55,5 +62,26 @@ public partial class MauiControl : CustomContentView, IValueConverter
         InternalClickedCommand = new Command(() => Clicked?.Invoke(this, EventArgs.Empty));
 
         InitializeComponent();
+
+        PropertyChanged += MauiControl_PropertyChanged;
+    }
+
+    private async void MauiControl_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(TextValue):
+                await Task.Delay(50);
+                Text = TextValue.ToString();
+                break;
+
+            case nameof(Text):
+                if (double.TryParse(Text, out double value))
+                {
+                    await Task.Delay(50);
+                    TextValue = value;
+                }
+                break;
+        }
     }
 }
