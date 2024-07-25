@@ -4,9 +4,9 @@ namespace MauiControlDemo;
 
 public partial class MauiControl : ContentView, IValueConverter
 {
-	public static BindableProperty AppearanceProperty = BindableProperty.Create(nameof(Appearance), typeof(string), typeof(MauiControl), "label");
-	public string Appearance
-	{
+    public static BindableProperty AppearanceProperty = BindableProperty.Create(nameof(Appearance), typeof(string), typeof(MauiControl), "label");
+    public string Appearance
+    {
         get => (string)GetValue(AppearanceProperty);
         set => SetValue(AppearanceProperty, value);
     }
@@ -57,14 +57,14 @@ public partial class MauiControl : ContentView, IValueConverter
 
     public Command InternalClickedCommand { get; }
 
-	public MauiControl()
-	{
+    public MauiControl()
+    {
         InternalClickedCommand = new Command(() => Clicked?.Invoke(this, EventArgs.Empty));
 
-		InitializeComponent();
+        InitializeComponent();
 
-		SetBinding(ControlTemplateProperty, new Binding(nameof(Appearance), converter: this, source: this));
-	}
+        SetBinding(ControlTemplateProperty, new Binding(nameof(Appearance), converter: this, source: this));
+    }
 
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
