@@ -186,6 +186,7 @@
     </Style>
 
     <Style x:Key="MauiControl" TargetType="local:MauiControl">
+        <Setter Property="Appearance" Value="label" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
@@ -195,7 +196,23 @@
     <Style
         x:Key="MauiControlLabel"
         BasedOn="{StaticResource MauiControl}"
-        TargetType="local:MauiControl" />
+        TargetType="local:MauiControl">
+        <Setter Property="Appearance" Value="label" />
+    </Style>
+
+    <Style
+        x:Key="MauiControlEntry"
+        BasedOn="{StaticResource MauiControl}"
+        TargetType="local:MauiControl">
+        <Setter Property="Appearance" Value="entry" />
+    </Style>
+
+    <Style
+        x:Key="MauiControlEditor"
+        BasedOn="{StaticResource MauiControl}"
+        TargetType="local:MauiControl">
+        <Setter Property="Appearance" Value="editor" />
+    </Style>
 
     <Style x:Key="MauiControlButton" TargetType="local:MauiControl">
         <Setter Property="Appearance" Value="button" />
